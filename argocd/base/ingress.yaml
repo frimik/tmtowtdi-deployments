@@ -1,0 +1,29 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: argocd-server
+spec:
+  rules:
+  - host: argocd.kube
+    http:
+      paths:
+      - backend:
+          serviceName: argocd-server
+          servicePort: http
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: argocd-server-grpc
+  annotations:
+    ingress.kubernetes.io/protocol: h2c
+spec:
+  rules:
+  - host: grpc.argocd.kube
+    http:
+      paths:
+      - backend:
+          serviceName: argocd-server
+          servicePort: https

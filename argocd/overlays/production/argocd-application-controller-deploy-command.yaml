@@ -1,0 +1,16 @@
+- op: replace
+  path: /spec/template/spec/containers/0/command
+  value:
+    - sh
+- op: replace
+  path: /spec/template/spec/containers/0/args
+  value:
+    - -c
+    - id; ulimit -l 200000; ulimit -a; su -c "argocd-application-controller
+      --status-processors ${ARGOCD_STATUS_PROCESSORS:-20} --operation-processors ${ARGOCD_OPERATION_PROCESSORS:-10}"
+    - argocd
+- op: replace
+  path: /spec/template/spec/containers/0/securityContext
+  value:
+    privileged: true
+    runAsUser: 0

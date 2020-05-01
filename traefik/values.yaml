@@ -1,0 +1,10 @@
+traefik:
+  metrics:
+    prometheus:
+      enabled: true
+  kubernetes:
+    ingressEndpoint:
+      useDefaultPublishedService: true
+  dashboard:
+    enabled: true
+    domain: traefik.kube

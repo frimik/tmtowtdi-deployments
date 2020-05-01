@@ -1,2 +1,3 @@
 resources:
 - base/argocd.yaml
+- base/traefik.yaml

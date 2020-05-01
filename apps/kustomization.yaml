@@ -1,4 +1,6 @@
 resources:
-  - base/traefik-ingress-namespace.yaml
   - base/argocd.yaml
+  - base/traefik-ns.yaml
   - base/traefik.yaml
+  - base/prometheus-operator-ns.yaml
+  - base/prometheus-operator-collection.yaml

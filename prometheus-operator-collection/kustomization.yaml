@@ -1,0 +1,3 @@
+resources:
+  - ./resources/prometheus-operator.yaml
+  - ./resources/prometheus-operator-resources.yaml

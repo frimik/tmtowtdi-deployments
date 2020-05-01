@@ -1,0 +1,9 @@
+prometheus-operator:
+  grafana:
+    ingress:
+      enabled: true
+      hosts:
+        - grafana.kube
+    sidecar:
+      dashboards:
+        enabled: true

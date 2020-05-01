@@ -1,4 +1,6 @@
 traefik:
+  rbac:
+    enabled: true
   metrics:
     prometheus:
       enabled: true

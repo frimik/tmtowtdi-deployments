@@ -1,0 +1,4 @@
+resources:
+  - base/traefik-ingress-namespace.yaml
+  - base/argocd.yaml
+  - base/traefik.yaml

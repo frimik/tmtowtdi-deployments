@@ -1,0 +1,8 @@
+limitNamespace: false
+
+ingress:
+  enabled: true
+  hosts:
+    - host: kubeview.kube
+      paths: 
+        - /

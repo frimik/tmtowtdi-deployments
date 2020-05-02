@@ -4,3 +4,5 @@ resources:
   - base/traefik.yaml
   - base/prometheus-operator-ns.yaml
   - base/prometheus-operator-collection.yaml
+  - base/kubeview-ns.yaml
+  - base/kubeview.yaml

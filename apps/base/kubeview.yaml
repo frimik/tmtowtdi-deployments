@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeview
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kubeview
+  project: default
+  source:
+    path: kubeview
+    repoURL: https://github.com/frimik/tmtowtdi-deployments
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-ingress.yaml
+  syncPolicy:
+    automated: {}

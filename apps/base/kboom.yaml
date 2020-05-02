@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kboom
+  namespace: argocd
+spec:
+  destination:
+    namespace: kboom
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kboom
+    repoURL: https://github.com/frimik/tmtowtdi-deployments
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

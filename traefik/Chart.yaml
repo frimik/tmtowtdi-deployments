@@ -1,1 +1,2 @@
-name: traefik
+name: traefik-upstream
+version: 0.0.1

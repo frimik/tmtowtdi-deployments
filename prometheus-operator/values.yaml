@@ -7,3 +7,12 @@ prometheus-operator:
     sidecar:
       dashboards:
         enabled: true
+
+  nodeExporter:
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          replacement: k3s-default
+          sourceLabels:
+            - __address__
+          targetLabel: cluster

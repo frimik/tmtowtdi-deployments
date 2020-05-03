@@ -10,8 +10,8 @@ spec:
     path: traefik
     repoURL: https://github.com/frimik/tmtowtdi-deployments
     targetRevision: HEAD
-  plugin:
-    name: kustomized-helm
+    plugin:
+      name: kustomized-helm
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: ingress

@@ -7,3 +7,5 @@ resources:
 patchesStrategicMerge:
   - overlays/traefik-dashboard-service.yaml
   - overlays/traefik-dashboard-ingress.yaml
+
+namespace: ingress

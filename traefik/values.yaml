@@ -10,3 +10,5 @@ traefik:
   dashboard:
     enabled: true
     domain: traefik.kube
+    statistics:
+      recentErrors: 10

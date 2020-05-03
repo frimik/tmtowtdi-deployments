@@ -9,7 +9,7 @@ data:
     - name: kustomized-helm
       init:
         command: ["/bin/sh", "-c"]
-        args: ["helm init --client-only && helm dependency build"]
+        args: ["helm dependency update"]
       generate:
         command: [sh, -c]
         args: ["helm template . > all.yaml && kustomize build"]

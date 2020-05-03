@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  statusbadge.enabled: 'true'
+  users.anonymous.enabled: 'true'
+  configManagementPlugins: |
+    - name: kustomized-helm
+      init:
+        command: ["/bin/sh", "-c"]
+        args: ["helm init --client-only && helm dependency build"]
+      generate:
+        command: [sh, -c]
+        args: ["helm template . > all.yaml && kustomize build"]

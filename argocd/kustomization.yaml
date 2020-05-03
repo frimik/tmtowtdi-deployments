@@ -6,6 +6,9 @@ resources:
   - base/install.yaml
   - base/ingress.yaml
 
+patchesStrategicMerge:
+- overlays/production/argo-cd-cm.yaml
+
 patchesJson6902:
 - path: overlays/production/argocd-server-deploy-command.yaml
   target:

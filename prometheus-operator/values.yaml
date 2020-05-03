@@ -1,5 +1,15 @@
+componentGlobals: &serviceMonitorClusterLabel
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          replacement: k3s-default
+          sourceLabels:
+            - __address__
+          targetLabel: cluster
+
 prometheus-operator:
   grafana:
+    << : *serviceMonitorClusterLabel
     ingress:
       enabled: true
       hosts:
@@ -8,11 +18,19 @@ prometheus-operator:
       dashboards:
         enabled: true
 
-  nodeExporter:
-    serviceMonitor:
-      relabelings:
-        - action: replace
-          replacement: k3s-default
-          sourceLabels:
-            - __address__
-          targetLabel: cluster
+  alertmanager: *serviceMonitorClusterLabel
+  coreDns: *serviceMonitorClusterLabel
+  kubeApiServer.relabelings: *serviceMonitorClusterLabel
+  kubeApiServer: *serviceMonitorClusterLabel
+  kubeControllerManager: *serviceMonitorClusterLabel
+  kubeDns.serviceMonitor.dnsmasqRelabelings: *serviceMonitorClusterLabel
+  kubeDns: *serviceMonitorClusterLabel
+  kubeEtcd: *serviceMonitorClusterLabel
+  kubeProxy: *serviceMonitorClusterLabel
+  kubeScheduler: *serviceMonitorClusterLabel
+  kubeStateMetrics: *serviceMonitorClusterLabel
+  kubelet.serviceMonitor.cAdvisorRelabelings: *serviceMonitorClusterLabel
+  kubelet: *serviceMonitorClusterLabel
+  prometheusOperator.serviceMonitor.relabeling: *serviceMonitorClusterLabel
+  prometheus: *serviceMonitorClusterLabel
+  nodeExporter: *serviceMonitorClusterLabel

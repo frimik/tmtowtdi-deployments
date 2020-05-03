@@ -12,4 +12,4 @@ data:
         args: ["helm repo add stable https://kubernetes-charts.storage.googleapis.com && helm dep build"]
       generate:
         command: ["/bin/sh", "-c"]
-        args: ["helm template --release-name \"${RELEASE_NAME:-${ARGOCD_APP_NAME}}\" . > all.yaml && kustomize build"]
+        args: ["helm template --release-name \"${RELEASE_NAME:-${ARGOCD_APP_NAME}}\" . > all.yaml && kustomize edit set namespace \"${RELEASE_NAMESPACE:-${ARGOCD_APP_NAMESPACE}}\" && kustomize build"]

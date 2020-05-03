@@ -8,8 +8,8 @@ data:
   configManagementPlugins: |
     - name: kustomized-helm
       init:
-        command: ["/bin/sh", "-c"]
+        command: ["/bin/sh", "-x", "-c"]
         args: ["helm repo add stable https://kubernetes-charts.storage.googleapis.com && helm dep build"]
       generate:
-        command: ["/bin/sh", "-c"]
-        args: ["helm template --release-name \"${RELEASE_NAME:-${ARGOCD_APP_NAME}}\" --namespace \"${RELEASE_NAMESPACE:-${ARGOCD_APP_NAMESPACE}}\" . > all.yaml && kustomize edit set namespace \"${RELEASE_NAMESPACE:-${ARGOCD_APP_NAMESPACE}}\" &&kustomize build"]
+        command: ["/bin/sh", "-x", "-c"]
+        args: ["helm template --release-name $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE . > all.yaml && kustomize edit set namespace $ARGOCD_APP_NAMESPACE && kustomize build"]

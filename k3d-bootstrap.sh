@@ -25,9 +25,7 @@ k3d create cluster "${CLUSTER_NAME}" \
     --k3s-server-arg='--no-deploy=traefik' \
     --wait
 
-k3d get kubeconfig "${CLUSTER_NAME}" -o "${HOME}/.kube/clusters/${CLUSTER_NAME}.yaml"
-KUBECONFIG="${HOME}/.kube/clusters/${CLUSTER_NAME}.yaml"
-export KUBECONFIG
+k3d get kubeconfig "${CLUSTER_NAME}" -o "${KUBECONFIG/%:*}" --switch
 
 #echo "# ${SCRIPTNAME}: Replacing 'default' with '$CLUSTER_NAME' in $KUBECONFIG ..."
 #sed -i -r "s/(:\s+)default\b/\1${CLUSTER_NAME}/" "${KUBECONFIG}"

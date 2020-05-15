@@ -9,4 +9,4 @@ resources:
   - podinfo-ns.yaml
   - podinfo.yaml
   - argocd-notifications-ns.yaml
-  - argocd-notifciations.yaml
+  - argocd-notifications.yaml

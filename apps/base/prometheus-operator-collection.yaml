@@ -14,5 +14,5 @@ spec:
     namespace: prometheus-operator
   syncPolicy:
     automated:
-      selfHeal: false
+      selfHeal: true
       prune: false

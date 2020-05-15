@@ -31,5 +31,5 @@ spec:
         - /webhooks
   syncPolicy:
     automated:
-      selfHeal: false
+      selfHeal: true
       prune: false

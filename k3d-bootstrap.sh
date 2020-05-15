@@ -10,32 +10,32 @@
 
 SCRIPTNAME=$(basename $0)
 
-CLUSTER_NAME="k3s-default"
+CLUSTER_NAME="local"
 
 # Install k3d
-k3d --version || wget -q -O - https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
+#k3d version || wget -q -O - https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
 
-# verify it
-k3d check-tools
-
-K3D_OPTIONS="--enable-registry --enable-registry-cache --registry-volume=k3d-registry" # --dns 172.17.0.1"
+# Options not supported yet in k3d v3:
+#K3D_OPTIONS="--enable-registry --enable-registry-cache --registry-volume=k3d-registry" # --dns 172.17.0.1"
 
 # traefik gets installed afterwards
-k3d create --name "${CLUSTER_NAME}" \
+k3d create cluster "${CLUSTER_NAME}" \
+    --masters 1 \
     --workers 1 \
-    $K3D_OPTIONS \
-    --server-arg='--no-deploy=traefik' \
-    --wait 0
+    --k3s-server-arg='--no-deploy=traefik' \
+    --wait
 
-KUBECONFIG=$(k3d get-kubeconfig --name "${CLUSTER_NAME}")
+k3d get kubeconfig "${CLUSTER_NAME}" -o "${HOME}/.kube/clusters/${CLUSTER_NAME}.yaml"
+KUBECONFIG="${HOME}/.kube/clusters/${CLUSTER_NAME}.yaml"
+export KUBECONFIG
 
-echo "# ${SCRIPTNAME}: Replacing 'default' with '$CLUSTER_NAME' in $KUBECONFIG ..."
-sed -i -r "s/(:\s+)default\b/\1${CLUSTER_NAME}/" "${KUBECONFIG}"
+#echo "# ${SCRIPTNAME}: Replacing 'default' with '$CLUSTER_NAME' in $KUBECONFIG ..."
+#sed -i -r "s/(:\s+)default\b/\1${CLUSTER_NAME}/" "${KUBECONFIG}"
 
 kubectl cluster-info
 
 #KUSTOMIZE_FLAGS="--enable_alpha_plugins --load_restrictor none"
-KUSTOMIZE_FLAGS="--enable_alpha_plugins --reorder none"
+#KUSTOMIZE_FLAGS="--enable_alpha_plugins --reorder none"
 
 #kustomize build ${KUSTOMIZE_FLAGS} base/cluster-setup | kubectl apply -f -
 

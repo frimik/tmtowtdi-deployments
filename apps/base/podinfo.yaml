@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: podinfo
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: podinfo
+  project: default
+  source:
+    path: podinfo
+    repoURL: https://github.com/frimik/tmtowtdi-deployments
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

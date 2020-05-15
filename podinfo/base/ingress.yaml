@@ -1,0 +1,13 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: podinfo
+spec:
+  rules:
+  - host: podinfo.kube
+    http:
+      paths:
+      - backend:
+          serviceName: podinfo
+          servicePort: http

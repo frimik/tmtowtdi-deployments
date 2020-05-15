@@ -5,6 +5,6 @@ bases:
   - github.com/stefanprodan/podinfo//kustomize
 
 resources:
-  - base/ingress.yaml
+  - ingress.yaml
 
 namespace: podinfo

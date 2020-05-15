@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-notifications
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd-notifications
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: argocd-notifications/production
+    repoURL: https://github.com/frimik/tmtowtdi-deployments
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

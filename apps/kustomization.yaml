@@ -1,10 +1,12 @@
 resources:
-  - base/argocd.yaml
-  - base/traefik-ns.yaml
-  - base/traefik.yaml
-  - base/prometheus-operator-ns.yaml
-  - base/prometheus-operator-collection.yaml
-  - base/kubeview-ns.yaml
-  - base/kubeview.yaml
-  - base/podinfo-ns.yaml
-  - base/podinfo.yaml
+  - argocd.yaml
+  - traefik-ns.yaml
+  - traefik.yaml
+  - prometheus-operator-ns.yaml
+  - prometheus-operator-collection.yaml
+  - kubeview-ns.yaml
+  - kubeview.yaml
+  - podinfo-ns.yaml
+  - podinfo.yaml
+  - argocd-notifications-ns.yaml
+  - argocd-notifciations.yaml

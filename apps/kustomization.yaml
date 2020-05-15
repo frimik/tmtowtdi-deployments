@@ -6,5 +6,5 @@ resources:
   - base/prometheus-operator-collection.yaml
   - base/kubeview-ns.yaml
   - base/kubeview.yaml
-  - base/kboom-ns.yaml
-  - base/kboom.yaml
+  - base/podinfo-ns.yaml
+  - base/podinfo.yaml

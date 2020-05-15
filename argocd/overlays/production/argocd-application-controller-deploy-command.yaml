@@ -6,7 +6,7 @@
   path: /spec/template/spec/containers/0/args
   value:
     - -c
-    - id; ulimit -l 200000 -n 5000; ulimit -a; su -c "argocd-application-controller
+    - id; ulimit -l 200000; ulimit -n 5000; ulimit -a; su -c "argocd-application-controller
       --status-processors ${ARGOCD_STATUS_PROCESSORS:-20} --operation-processors ${ARGOCD_OPERATION_PROCESSORS:-10}"
     - argocd
 - op: replace

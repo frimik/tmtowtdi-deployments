@@ -37,12 +37,12 @@ kubectl cluster-info
 #kustomize build ${KUSTOMIZE_FLAGS} base/cluster-setup | kubectl apply -f -
 
 # First, init the cluster, including ArgoCD
-kubectl apply -k k3d-bootstrap
+kustomize build ./k3d-bootstrap | kubectl apply -f -
 
 sleep 5
 
 # second, init the applications
-kubectl apply -k k3d-bootstrap/apps
+kustomize build ./k3d-bootstrap/apps | kubectl apply -f -
 
 #if [ -d "./overlay/${USER}/cluster_init" ]; then
 #    kustomize build ${KUSTOMIZE_FLAGS} overlay/${USER}/cluster_init | kubectl apply -f -

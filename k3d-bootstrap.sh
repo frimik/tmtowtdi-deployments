@@ -19,13 +19,12 @@ CLUSTER_NAME="local"
 #K3D_OPTIONS="--enable-registry --enable-registry-cache --registry-volume=k3d-registry" # --dns 172.17.0.1"
 
 # traefik gets installed afterwards
-k3d create cluster "${CLUSTER_NAME}" \
-    --masters 1 \
-    --workers 1 \
+k3d cluster create "${CLUSTER_NAME}" \
+    --servers 1 \
+    --agents 1 \
     --k3s-server-arg='--no-deploy=traefik' \
+    --volume "$(pwd)/registries.yaml:/etc/rancher/k3s/registries.yaml" \
     --wait
-
-k3d get kubeconfig "${CLUSTER_NAME}" -o "${KUBECONFIG/%:*}" --switch
 
 #echo "# ${SCRIPTNAME}: Replacing 'default' with '$CLUSTER_NAME' in $KUBECONFIG ..."
 #sed -i -r "s/(:\s+)default\b/\1${CLUSTER_NAME}/" "${KUBECONFIG}"

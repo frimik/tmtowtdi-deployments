@@ -3,29 +3,30 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - install.yaml
+  - github.com/argoproj/argo-cd/manifests/crds
+  - github.com/argoproj/argo-cd/manifests/base
+  - github.com/argoproj/argo-cd/manifests/cluster-rbac
   - ingress.yaml
 
 patchesStrategicMerge:
-- overlays/production/argo-cd-cm.yaml
+  - argocd-cm.yaml
 
 patchesJson6902:
-- path: overlays/production/argocd-server-deploy-command.yaml
-  target:
-    group: apps
-    kind: Deployment
-    name: argocd-server
-    version: v1
+  - path: argocd-server-deploy-command.yaml
+    target:
+      group: apps
+      kind: Deployment
+      name: argocd-server
+      version: v1
 
-- path: overlays/production/argocd-application-controller-deploy-command.yaml
-  target:
-    group: apps
-    kind: Deployment
-    name: argocd-application-controller
-    version: v1
+  - path: argocd-application-controller-deploy-command.yaml
+    target:
+      group: apps
+      kind: StatefulSet
+      name: argocd-application-controller
+      version: v1
 
 namespace: argocd
-
 #images:
 #- name: argoproj/argocd
 #  newName: docker.pkg.github.com/argoproj/argo-cd/argocd

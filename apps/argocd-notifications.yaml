@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd-notifications/production
+    path: argocd-notifications/overlays/production
     repoURL: https://github.com/frimik/tmtowtdi-deployments
     targetRevision: HEAD
   syncPolicy:

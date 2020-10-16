@@ -1,0 +1,6 @@
+---
+# /etc/rancher/k3s/registries.yaml
+mirrors:
+  docker.io:
+    endpoint:
+      - "http://172.17.0.1:5000"
